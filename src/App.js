@@ -1,25 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
+import CardMovie from "./components/CardMovie";
+import { createGlobalStyle } from "styled-components";
+import Header from "./components/Header";
+import Slider from "./components/Slider";
+import LayoutMovies from "./components/LayoutMovies";
+import TitleSection from "./components/TitleSection";
+import GridMovies from "./components/GridMovies";
+import Spinner from "./components/Spinner";
 
-function App() {
+const GlobalStyle = createGlobalStyle`
+  
+
+  body{
+    background: #0f0e17;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+
+  }
+  p{
+    margin:0;
+  }
+
+
+`;
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <GlobalStyle />
+      <Header />
+      {/* <Slider></Slider> */}
+      <LayoutMovies>
+        <TitleSection>Todas las peliculas</TitleSection>
+        <GridMovies>
+          <CardMovie />
+          <CardMovie />
+          <CardMovie />
+          <CardMovie />
+          <CardMovie />
+          <CardMovie />
+          <CardMovie />
+          <CardMovie />
+          <CardMovie />
+          <CardMovie />
+        </GridMovies>
+        <Spinner />
+      </LayoutMovies>
+    </>
   );
-}
+};
 
 export default App;
