@@ -19,7 +19,7 @@ const Modal = () => {
           </Overview>
           <Details>
             <li>2020</li>
-            <li class="dots">Crimen/Suspenso</li>
+            <li className="dots">Crimen/Suspenso</li>
             <li>1h 40m</li>
           </Details>
           <ButtonActions>

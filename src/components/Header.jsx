@@ -33,11 +33,11 @@ const Header = () => {
           </Navigation>
           <Search>
             <input
-              class="search-input"
+              className="search-input"
               type="text"
               placeholder="Search by name..."
             />
-            <button class="search-button">
+            <button className="search-button">
               <BsSearch />
             </button>
           </Search>
