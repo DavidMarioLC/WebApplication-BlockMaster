@@ -1,17 +1,21 @@
-import styled from "styled-components";
-import { getAverage } from "../utils/getAverage";
-const Card = () => {
+import styled from 'styled-components';
+import { getAverage } from '../utils/getAverage';
+
+const Card = ({ movie }) => {
+  const { poster_path, vote_average } = movie;
   return (
     <StyledCard>
       <Poster
-        src="https://picsum.photos/220/330"
-        alt="image picsum"
-        title="image title"
-        width="220"
-        height="330"
-        loading="lazy"
+        src={`https://image.tmdb.org/t/p/w500${poster_path}`}
+        alt='image picsum'
+        title='image title'
+        width='220'
+        height='330'
+        loading='lazy'
       />
-      <VoteAverage average={getAverage(6.9)}>6.9</VoteAverage>
+      <VoteAverage average={getAverage(vote_average)}>
+        {vote_average}
+      </VoteAverage>
     </StyledCard>
   );
 };
@@ -20,6 +24,7 @@ const StyledCard = styled.div.attrs({ tabIndex: 0 })`
   position: relative;
   width: 13.75rem;
   height: 20.625rem;
+  cursor: pointer;
 
   &:focus-visible {
     border-radius: 0.5rem;
@@ -39,7 +44,7 @@ const VoteAverage = styled.p`
   background: #0f0e17c5;
   border-radius: 50%;
   border: 2px solid;
-  border-color: ${({ average }) => (average ? "red" : "yellow")};
+  border-color: ${({ average }) => (average ? 'red' : 'yellow')};
 
   display: flex;
   justify-content: center;
