@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { Wrapper } from "./Wrapper";
+import styled from 'styled-components';
+import { Wrapper } from './Wrapper';
 const LayoutMovies = ({ children }) => {
   return (
     <StyledLayoutMovies>
