@@ -1,7 +1,11 @@
-import styled, { keyframes } from "styled-components";
+import styled, { keyframes } from 'styled-components';
 
 const Spinner = () => {
-  return <StyledSpinner></StyledSpinner>;
+  return (
+    <SpinnerContainer>
+      <StyledSpinner></StyledSpinner>
+    </SpinnerContainer>
+  );
 };
 
 const rotate = keyframes`
@@ -11,6 +15,13 @@ from{
 to {
   transform: rotate(360deg);
 }
+`;
+
+const SpinnerContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 210px);
 `;
 
 const StyledSpinner = styled.div`
