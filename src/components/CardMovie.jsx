@@ -1,14 +1,23 @@
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { showModal } from '../redux/actions';
 import { getAverage } from '../utils/getAverage';
 
 const Card = ({ movie }) => {
-  const { poster_path, vote_average } = movie;
+  const dispatch = useDispatch();
+
+  const { poster_path, vote_average, title, id } = movie;
+
+  const handlerCLickCard = () => {
+    dispatch(showModal());
+  };
+
   return (
-    <StyledCard>
+    <StyledCard onClick={() => handlerCLickCard()}>
       <Poster
         src={`https://image.tmdb.org/t/p/w500${poster_path}`}
-        alt='image picsum'
-        title='image title'
+        alt={title}
+        title={title}
         width='220'
         height='330'
         loading='lazy'
