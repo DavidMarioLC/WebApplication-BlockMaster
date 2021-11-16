@@ -1,13 +1,21 @@
-import styled from "styled-components";
-import { AiOutlinePlus } from "react-icons/ai";
-import { BsFillPlayFill } from "react-icons/bs";
-import { IoMdClose } from "react-icons/io";
+import { AiOutlinePlus } from 'react-icons/ai';
+import { BsFillPlayFill } from 'react-icons/bs';
+import { IoMdClose } from 'react-icons/io';
+import { useDispatch } from 'react-redux';
+import styled from 'styled-components';
+import { showModal } from '../redux/actions';
+
 const Modal = () => {
+  const dispatch = useDispatch();
+
+  const handlerCloseModal = () => {
+    dispatch(showModal());
+  };
   return (
     <StyledWrapper>
       <Dialog>
         <ThumbnailWrapper>
-          <Thumbnail src="https://picsum.photos/220/330" alt="" />
+          <Thumbnail src='https://picsum.photos/220/330' alt='' />
         </ThumbnailWrapper>
         <Content>
           <Title>Title modal</Title>
@@ -19,7 +27,7 @@ const Modal = () => {
           </Overview>
           <Details>
             <li>2020</li>
-            <li className="dots">Crimen/Suspenso</li>
+            <li className='dots'>Crimen/Suspenso</li>
             <li>1h 40m</li>
           </Details>
           <ButtonActions>
@@ -33,7 +41,7 @@ const Modal = () => {
             </Button>
           </ButtonActions>
         </Content>
-        <ButtonClose>
+        <ButtonClose onClick={handlerCloseModal}>
           <IoMdClose />
         </ButtonClose>
       </Dialog>
@@ -44,6 +52,7 @@ const Modal = () => {
 const StyledWrapper = styled.div`
   background: hsl(246, 24%, 7%, 0.92);
   position: fixed;
+  z-index: 2;
   inset: 0;
 
   display: flex;
@@ -102,13 +111,13 @@ const Details = styled.ul`
   }
 
   .dots::before {
-    content: "●";
+    content: '●';
     left: -16px;
     color: #a7a9be;
     position: absolute;
   }
   .dots::after {
-    content: "●";
+    content: '●';
     right: -16px;
     color: #a7a9be;
     position: absolute;
@@ -124,7 +133,7 @@ const Button = styled.button`
   cursor: pointer;
   border: none;
   padding: 0.625rem;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: bold;
 
   display: flex;
@@ -133,9 +142,9 @@ const Button = styled.button`
 
   border-radius: 4px;
 
-  background: ${({ isPrimary }) => (isPrimary ? "#FED941" : "transparent")};
+  background: ${({ isPrimary }) => (isPrimary ? '#FED941' : 'transparent')};
   border: 1px solid #fed941;
-  color: ${({ isPrimary }) => isPrimary || "#FED941"};
+  color: ${({ isPrimary }) => isPrimary || '#FED941'};
 
   &:active {
     transform: scale(0.96);
