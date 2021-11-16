@@ -1,47 +1,90 @@
-import styled from "styled-components";
-import { Wrapper } from "./Wrapper";
-import logo from "../assets/images/logo.png";
-import { BsSearch } from "react-icons/bs";
-import { AiOutlineMenu } from "react-icons/ai";
+import { AiOutlineMenu } from 'react-icons/ai';
+import { BsSearch } from 'react-icons/bs';
+import { useDispatch, useSelector } from 'react-redux';
+import { NavLink, useSearchParams } from 'react-router-dom';
+import styled from 'styled-components';
+import logo from '../assets/images/logo.png';
+import { searchByName, setFilterMovies } from '../redux/actions';
+import { Wrapper } from './Wrapper';
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const [, setSearchParams] = useSearchParams();
+  const isActiveLink = useSelector((state) => state.filter);
+
+  const handlerSearch = (e) => {
+    e.preventDefault();
+    setSearchParams({ search: e.target.search.value });
+    dispatch(searchByName(e.target.search.value));
+    dispatch(setFilterMovies('search'));
+  };
+
+  const handlerLinks = (value) => {
+    dispatch(setFilterMovies(value));
+  };
+
   return (
     <StyledHeader>
       <Wrapper>
-        <div className="header-content">
-          <a href="!#">
+        <div className='header-content'>
+          <NavLink to='/' onClick={() => handlerLinks('all')}>
             <Logo
               src={logo}
-              width="100"
-              height="64"
-              title="Logo Block Master"
-              alt="Logo Block Master"
+              width='100'
+              height='64'
+              title='Logo Block Master'
+              alt='Logo Block Master'
             />
-          </a>
+          </NavLink>
           <Navigation>
             <Menu>
               <MenuItem>
-                <a href="!#">Todas</a>
+                <NavLink
+                  onClick={() => handlerLinks('all')}
+                  style={{
+                    color: isActiveLink === 'all' ? 'yellow' : 'white',
+                  }}
+                  to='/'
+                >
+                  Todas
+                </NavLink>
               </MenuItem>
               <MenuItem>
-                <a href="!#">Más valoradas</a>
+                <NavLink
+                  onClick={() => handlerLinks('most-valued')}
+                  style={{
+                    color: isActiveLink === 'most-valued' ? 'yellow' : 'white',
+                  }}
+                  to='/?filterby=mas-valoradas'
+                >
+                  Más valoradas
+                </NavLink>
               </MenuItem>
               <MenuItem>
-                <a href="!#">Menos valoradas</a>
+                <NavLink
+                  onClick={() => handlerLinks('least-valued')}
+                  style={{
+                    color: isActiveLink === 'least-valued' ? 'yellow' : 'white',
+                  }}
+                  to='/?filterby=menos-valoradas'
+                >
+                  Menos valoradas
+                </NavLink>
               </MenuItem>
             </Menu>
           </Navigation>
-          <Search>
+          <Search onSubmit={handlerSearch}>
             <input
-              className="search-input"
-              type="text"
-              placeholder="Search by name..."
+              className='search-input'
+              type='text'
+              placeholder='Search by name...'
+              name='search'
             />
-            <button className="search-button">
+            <button className='search-button'>
               <BsSearch />
             </button>
           </Search>
-          <div className="header-actions">
+          <div className='header-actions'>
             <ButtonSearch>
               <BsSearch />
             </ButtonSearch>
@@ -95,8 +138,8 @@ const MenuItem = styled.li`
   }
 `;
 
-const Search = styled.div.attrs({
-  "aria-label": "Search",
+const Search = styled.form.attrs({
+  'aria-label': 'Search',
 })`
   display: flex;
 
