@@ -6,10 +6,10 @@ import { getAverage } from '../utils/getAverage';
 const Card = ({ movie }) => {
   const dispatch = useDispatch();
 
-  const { poster_path, vote_average, title, id } = movie;
+  const { poster_path, vote_average, title } = movie;
 
   const handlerCLickCard = () => {
-    dispatch(showModal());
+    dispatch(showModal(movie));
   };
 
   return (
