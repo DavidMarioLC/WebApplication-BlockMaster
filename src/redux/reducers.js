@@ -4,9 +4,11 @@ const initialState = {
   page: 1,
   movies: [],
   searchMoviesList: [],
+  genders: [],
   filter: 'all',
   loading: true,
   modal: false,
+  movie: {},
 };
 
 export const movieReducer = (state = initialState, action) => {
@@ -41,7 +43,19 @@ export const movieReducer = (state = initialState, action) => {
     case actions.SHOW_MODAL:
       return {
         ...state,
-        modal: !state.modal,
+        modal: true,
+        movie: action.payload.value,
+      };
+    case actions.CLOSE_MODAL:
+      return {
+        ...state,
+        modal: false,
+      };
+
+    case actions.INIT_GENDERS:
+      return {
+        ...state,
+        genders: [...state.genders, ...action.payload.value],
       };
     default:
       return state;

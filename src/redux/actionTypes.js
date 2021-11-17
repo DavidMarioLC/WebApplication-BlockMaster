@@ -5,3 +5,5 @@ export const MOST_VALUE_MOVIES = 'MOST_VALUE_MOVIES';
 export const SET_FILTER = 'SET_FILTER';
 export const LOADING = 'LOADING';
 export const SHOW_MODAL = 'SHOW_MODAL';
+export const CLOSE_MODAL = 'CLOSE_MODAL';
+export const INIT_GENDERS = 'INIT_GENDERS';
