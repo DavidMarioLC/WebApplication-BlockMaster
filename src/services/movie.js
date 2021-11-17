@@ -15,8 +15,17 @@ const getByName = async (value) => {
   return data;
 };
 
+const getAllGenders = async () => {
+  const API_URL = `${URL_BASE}/genre/movie/list?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`;
+
+  const response = await fetch(API_URL);
+  const data = await response.json();
+  return data;
+};
+
 const movie = {
   getAll,
   getByName,
+  getAllGenders,
 };
 export default movie;
