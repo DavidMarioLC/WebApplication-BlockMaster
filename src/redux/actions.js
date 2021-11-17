@@ -9,6 +9,18 @@ export const initStateMovies = () => async (dispatch) => {
       value: movies,
     },
   });
+
+  dispatch(initGenderMovies());
+};
+
+export const initGenderMovies = () => async (dispatch) => {
+  const { genres } = await movieService.getAllGenders();
+  dispatch({
+    type: actions.INIT_GENDERS,
+    payload: {
+      value: genres,
+    },
+  });
 };
 
 export const searchByName = (value) => async (dispatch) => {
@@ -34,4 +46,13 @@ export const loading = () => ({
   type: actions.LOADING,
 });
 
-export const showModal = (value) => (dispatch) => {};
+export const showModal = (movie) => ({
+  type: actions.SHOW_MODAL,
+  payload: {
+    value: movie,
+  },
+});
+
+export const closeModal = () => ({
+  type: actions.CLOSE_MODAL,
+});
