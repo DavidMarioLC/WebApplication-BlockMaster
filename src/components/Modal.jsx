@@ -1,34 +1,46 @@
 import { AiOutlinePlus } from 'react-icons/ai';
 import { BsFillPlayFill } from 'react-icons/bs';
 import { IoMdClose } from 'react-icons/io';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { showModal } from '../redux/actions';
+import { closeModal } from '../redux/actions';
 
 const Modal = () => {
   const dispatch = useDispatch();
-
+  const { movie, genders } = useSelector((state) => state);
   const handlerCloseModal = () => {
-    dispatch(showModal());
+    dispatch(closeModal());
   };
+
+  const { title, poster_path, overview, genre_ids } = movie;
+
+  //filtering an array of objects genders based on array of genders ids
+  const listGenders = genders.filter((gender) => genre_ids.includes(gender.id));
+
   return (
     <StyledWrapper>
       <Dialog>
         <ThumbnailWrapper>
-          <Thumbnail src='https://picsum.photos/220/330' alt='' />
+          <Thumbnail
+            src={`https://image.tmdb.org/t/p/w500${poster_path}`}
+            alt={title}
+            title={title}
+            width='220'
+            height='330'
+            loading='lazy'
+          />
         </ThumbnailWrapper>
         <Content>
-          <Title>Title modal</Title>
-          <Overview>
-            Arielle nació en un pueblo pequeño, pero sueña con ser famosa. Tras
-            conocer a Dean, un delincuente, la pareja empieza a asaltar negocios
-            y presumir de sus fechorías en las redes sociales, en busca de una
-            notoriedad manchada de sangre.
-          </Overview>
+          <Title>{title}</Title>
+          <Overview>{overview}</Overview>
           <Details>
-            <li>2020</li>
-            <li className='dots'>Crimen/Suspenso</li>
-            <li>1h 40m</li>
+            <li>2021</li>
+
+            <li className='tags'>
+              {listGenders.map((gender) => (
+                <Tag key={gender.id}>{gender.name}</Tag>
+              ))}
+            </li>
           </Details>
           <ButtonActions>
             <Button isPrimary>
@@ -49,6 +61,11 @@ const Modal = () => {
   );
 };
 
+const Tag = styled.span`
+  border: 1px solid #a7a9be;
+  border-radius: 5px;
+  padding: 3px;
+`;
 const StyledWrapper = styled.div`
   background: hsl(246, 24%, 7%, 0.92);
   position: fixed;
@@ -64,6 +81,7 @@ const StyledWrapper = styled.div`
 const Dialog = styled.div`
   position: relative;
   display: flex;
+
   gap: 2rem;
   padding: 0 1rem;
 
@@ -76,15 +94,18 @@ const Dialog = styled.div`
 
 const ThumbnailWrapper = styled.div`
   text-align: center;
+  flex-shrink: 0;
 `;
 
 const Thumbnail = styled.img`
   border-radius: 4px;
+  max-width: 100%;
 `;
 
 const Content = styled.div`
   display: flex;
   flex-direction: column;
+
   gap: 1rem;
 `;
 
@@ -97,6 +118,7 @@ const Overview = styled.p`
   color: #fff;
   line-height: 1.5rem;
   font-size: 1rem;
+  text-overflow: ellipsis;
 `;
 
 const Details = styled.ul`
@@ -105,22 +127,14 @@ const Details = styled.ul`
   display: flex;
   gap: 2rem;
   font-size: 1rem;
+  display: flex;
+  align-items: center;
 
-  .dots {
-    position: relative;
-  }
-
-  .dots::before {
-    content: '●';
-    left: -16px;
-    color: #a7a9be;
-    position: absolute;
-  }
-  .dots::after {
-    content: '●';
-    right: -16px;
-    color: #a7a9be;
-    position: absolute;
+  .tags {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    gap: 0.5rem;
   }
 `;
 
