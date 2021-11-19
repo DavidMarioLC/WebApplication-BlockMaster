@@ -118,7 +118,11 @@ const Overview = styled.p`
   color: #fff;
   line-height: 1.5rem;
   font-size: 1rem;
-  text-overflow: ellipsis;
+  //cutting paragraph ...
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
 `;
 
 const Details = styled.ul`
