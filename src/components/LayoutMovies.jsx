@@ -8,6 +8,8 @@ const LayoutMovies = ({ children }) => {
   );
 };
 
-const StyledLayoutMovies = styled.main``;
+const StyledLayoutMovies = styled.main`
+  padding: 2rem 0;
+`;
 
 export default LayoutMovies;
