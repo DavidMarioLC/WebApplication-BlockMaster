@@ -91,7 +91,7 @@ const Header = () => {
                 onChange={handlerInput}
                 className='search-input'
                 type='text'
-                placeholder='Search by name...'
+                placeholder='Buscar por nombre...'
                 name='search'
               />
               <button aria-label='boton buscar' className='search-button'>
