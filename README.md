@@ -2,13 +2,12 @@
 <img width="120px"  src="https://raw.githubusercontent.com/no-te-rindas/logo/main/Logo/LeonidasEsteban-destello-envolvente-cuadrada.png" />
 </div>
 
-# Block Master Movies
-
+<h1 align="center">Block Master Movies</h1>
 <div align="center">
 <img width="600px"    src="https://raw.githubusercontent.com/DavidMarioLC/WebApplication-BlockMaster/main/preview.png" />
 </div>
 
-Revive una tienda icónica para rentar películas, regresa con una nueva plataforma de streaming.
+<p align="center">Revive una tienda icónica para rentar películas, regresa con una nueva plataforma de streaming.</p>
 
 ## Features
 
