@@ -1,7 +1,7 @@
 const URL_BASE = 'https://api.themoviedb.org/3';
-const API_URL = `${URL_BASE}/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&sort_by=popularity.desc`;
 
-const getAll = async () => {
+const getAll = async (page) => {
+  const API_URL = `${URL_BASE}/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&page=${page}&sort_by=popularity.desc`;
   const response = await fetch(API_URL);
   const data = await response.json();
 
