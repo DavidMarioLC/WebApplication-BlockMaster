@@ -45,6 +45,7 @@ const Poster = styled.img`
   display: block;
   border-radius: 0.5rem;
   box-shadow: 0px 10px 30px -3px rgba(0, 0, 0, 0.507);
+  aspect-ratio: 4/3;
 `;
 
 const VoteAverage = styled.p`
