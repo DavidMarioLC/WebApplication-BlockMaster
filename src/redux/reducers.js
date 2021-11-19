@@ -18,6 +18,7 @@ export const movieReducer = (state = initialState, action) => {
         ...state,
         movies: [...state.movies, ...action.payload.value.results],
         loading: false,
+        page: state.page + 1,
       };
 
     case actions.SEARCH:
@@ -57,6 +58,12 @@ export const movieReducer = (state = initialState, action) => {
         ...state,
         genders: [...state.genders, ...action.payload.value],
       };
+    // case actions.LOAD_MORE_MOVIES:
+    //   return {
+    //     ...state,
+    //     // page: state.page + 1,
+    //     movies: [...state.movies, ...action.payload.value.results],
+    //   };
     default:
       return state;
   }
