@@ -1,16 +1,17 @@
 import movieService from '../services/movie';
 import * as actions from './actionTypes';
 
-export const initStateMovies = () => async (dispatch) => {
-  const movies = await movieService.getAll();
+export const initStateMovies = () => async (dispatch, getSatate) => {
+  const { page } = getSatate();
+
+  const movies = await movieService.getAll(page);
+
   dispatch({
     type: actions.INIT_MOVIES,
     payload: {
       value: movies,
     },
   });
-
-  dispatch(initGenderMovies());
 };
 
 export const initGenderMovies = () => async (dispatch) => {
