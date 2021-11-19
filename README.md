@@ -6,7 +6,9 @@
 
 ## Preview
 
-<img width="400px"  src="https://github.com/no-te-rindas/imagenes/blob/main/Readmes/blockmaster/bolckMaster-desktop.png?raw=true" />
+<div align="center">
+<img width="600px"    src="https://raw.githubusercontent.com/DavidMarioLC/WebApplication-BlockMaster/main/preview.png" />
+</div>
 
 Revive una tienda icónica para rentar películas, regresa con una nueva plataforma de streaming.
 
