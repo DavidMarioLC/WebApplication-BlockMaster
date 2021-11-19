@@ -1,11 +1,19 @@
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 import CardMovie from '../components/CardMovie';
 import Spinner from '../components/Spinner';
 import TitleSection from '../components/TitleSection';
+import { searchByName, setFilterMovies } from '../redux/actions';
 import Modal from './Modal';
 import NotFoundSearch from './NotFoundSearch';
+
 const GridMovies = () => {
+  const dispatch = useDispatch();
+  let [searchParams] = useSearchParams();
+  let param = searchParams.get('filterby') || searchParams.get('search');
+
   const { movies, filter, searchMoviesList, loading, modal } = useSelector(
     (state) => state
   );
@@ -44,6 +52,19 @@ const GridMovies = () => {
     };
     return options[filter];
   };
+
+  useEffect(() => {
+    if (!param) return;
+
+    if (param === 'mas-valoradas') {
+      dispatch(setFilterMovies('most-valued'));
+    } else if (param === 'menos-valoradas') {
+      dispatch(setFilterMovies('least-valued'));
+    } else {
+      dispatch(searchByName(param));
+      dispatch(setFilterMovies('search'));
+    }
+  }, [param, dispatch]);
 
   return (
     <>
