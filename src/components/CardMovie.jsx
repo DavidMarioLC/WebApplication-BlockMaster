@@ -18,8 +18,6 @@ const Card = ({ movie }) => {
         src={`https://image.tmdb.org/t/p/w500${poster_path}`}
         alt={title}
         title={title}
-        width='220'
-        height='330'
         loading='lazy'
       />
       <VoteAverage average={getAverage(vote_average)}>
@@ -31,8 +29,6 @@ const Card = ({ movie }) => {
 
 const StyledCard = styled.div.attrs({ tabIndex: 0 })`
   position: relative;
-  width: 13.75rem;
-  height: 20.625rem;
   cursor: pointer;
 
   &:focus-visible {
@@ -45,7 +41,7 @@ const Poster = styled.img`
   display: block;
   border-radius: 0.5rem;
   box-shadow: 0px 10px 30px -3px rgba(0, 0, 0, 0.507);
-  aspect-ratio: 4/3;
+  width: 100%;
 `;
 
 const VoteAverage = styled.p`

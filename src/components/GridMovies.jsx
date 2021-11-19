@@ -94,7 +94,7 @@ const GridMovies = () => {
 
 const StyledGridMovies = styled.section`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min-content, 220px));
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
   place-content: center;
   align-items: center;
   gap: 1rem;
