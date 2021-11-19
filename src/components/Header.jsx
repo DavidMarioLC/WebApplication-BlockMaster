@@ -1,4 +1,4 @@
-import { AiOutlineMenu } from 'react-icons/ai';
+import { useState } from 'react';
 import { BsSearch } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useSearchParams } from 'react-router-dom';
@@ -8,19 +8,30 @@ import { searchByName, setFilterMovies } from '../redux/actions';
 import { Wrapper } from './Wrapper';
 
 const Header = () => {
+  const [searchValue, setSearchValue] = useState('');
   const dispatch = useDispatch();
   const [, setSearchParams] = useSearchParams();
   const isActiveLink = useSelector((state) => state.filter);
 
   const handlerSearch = (e) => {
+    if (!searchValue) return;
     e.preventDefault();
-    setSearchParams({ search: e.target.search.value });
-    dispatch(searchByName(e.target.search.value));
+    setSearchParams({ search: searchValue });
+    dispatch(searchByName(searchValue));
     dispatch(setFilterMovies('search'));
+    resetForm();
   };
 
   const handlerLinks = (value) => {
     dispatch(setFilterMovies(value));
+  };
+
+  const handlerInput = (e) => {
+    setSearchValue(e.target.value);
+  };
+
+  const resetForm = () => {
+    setSearchValue('');
   };
 
   return (
@@ -74,24 +85,20 @@ const Header = () => {
             </Menu>
           </Navigation>
           <Search onSubmit={handlerSearch}>
-            <input
-              className='search-input'
-              type='text'
-              placeholder='Search by name...'
-              name='search'
-            />
-            <button className='search-button'>
-              <BsSearch />
-            </button>
+            <div style={{ display: 'flex' }}>
+              <input
+                value={searchValue}
+                onChange={handlerInput}
+                className='search-input'
+                type='text'
+                placeholder='Search by name...'
+                name='search'
+              />
+              <button aria-label='boton buscar' className='search-button'>
+                <BsSearch />
+              </button>
+            </div>
           </Search>
-          <div className='header-actions'>
-            <ButtonSearch>
-              <BsSearch />
-            </ButtonSearch>
-            <ButtonMenu>
-              <AiOutlineMenu />
-            </ButtonMenu>
-          </div>
         </div>
       </Wrapper>
     </StyledHeader>
@@ -103,29 +110,13 @@ const Logo = styled.img`
   height: auto;
 `;
 
-const ButtonSearch = styled.button`
-  height: 3rem;
-  width: 3rem;
-  background: none;
-  border: none;
-  color: #fed941;
-  font-size: 1.5rem;
-`;
-const ButtonMenu = styled.button`
-  height: 3rem;
-  width: 3rem;
-  background: none;
-  border: none;
-  color: #fed941;
-  font-size: 1.5rem;
-`;
-
 const Navigation = styled.nav``;
 
 const Menu = styled.ul`
   margin: 0;
   list-style: none;
   display: flex;
+  align-items: center;
   gap: 48px;
   font-weight: bold;
   color: #fff;
@@ -144,6 +135,7 @@ const Search = styled.form.attrs({
   display: flex;
 
   .search-input {
+    width: 100%;
     border: none;
     font-size: 1.25rem;
     padding: 0.625rem 1.5rem;
@@ -163,28 +155,20 @@ const Search = styled.form.attrs({
 
 const StyledHeader = styled.header`
   .header-content {
-    height: 80px;
+    /* height: 80px; */
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
+    text-align: center;
 
-  .header-actions {
-    display: flex;
-    gap: 1rem;
-  }
-
-  ${Navigation},${Search} {
-    display: none;
+    //others styled_slider
+    flex-direction: column;
+    gap: 2rem;
   }
 
   @media screen and (min-width: 768px) {
-    .header-actions {
-      display: none;
-    }
-
-    ${Navigation},${Search} {
-      display: flex;
+    .header-content {
+      flex-direction: row;
     }
   }
 `;
