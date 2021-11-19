@@ -4,8 +4,6 @@
 
 # Block Master Movies
 
-## Preview
-
 <div align="center">
 <img width="600px"    src="https://raw.githubusercontent.com/DavidMarioLC/WebApplication-BlockMaster/main/preview.png" />
 </div>
