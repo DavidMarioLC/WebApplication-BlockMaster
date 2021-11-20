@@ -18,9 +18,10 @@ to {
 `;
 
 const SpinnerContainer = styled.div`
+  padding-top: 4rem;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: start;
   height: calc(100vh - 210px);
 `;
 
