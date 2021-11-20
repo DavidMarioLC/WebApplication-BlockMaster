@@ -4,6 +4,7 @@ const initialState = {
   page: 1,
   movies: [],
   searchMoviesList: [],
+  searchWord: '',
   genders: [],
   filter: 'all',
   loading: true,
@@ -28,6 +29,7 @@ export const movieReducer = (state = initialState, action) => {
         loadingScroll: false,
         loading: false,
         searchMoviesList: action.payload.value.results,
+        searchWord: action.payload.searchWord,
       };
 
     case actions.SET_FILTER:

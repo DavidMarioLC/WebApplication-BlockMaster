@@ -39,6 +39,7 @@ export const searchByName = (value) => async (dispatch) => {
     type: actions.SEARCH,
     payload: {
       value: movies,
+      searchWord: value,
     },
   });
 };
