@@ -14,9 +14,8 @@ const GridMovies = () => {
   let [searchParams] = useSearchParams();
   let param = searchParams.get('filterby') || searchParams.get('search');
 
-  const { movies, filter, searchMoviesList, loading, modal } = useSelector(
-    (state) => state
-  );
+  const { movies, filter, searchMoviesList, loading, modal, loadingScroll } =
+    useSelector((state) => state);
 
   const AllMovies = () => {
     return movies.map((movie) => <CardMovie key={movie.id} movie={movie} />);
@@ -88,6 +87,7 @@ const GridMovies = () => {
         <NotFoundSearch />
       ) : null}
       {modal ? <Modal /> : null}
+      {loadingScroll ? <Spinner /> : null}
     </>
   );
 };
