@@ -1,13 +1,9 @@
-import { useDispatch } from 'react-redux';
-import { useSearchParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import notFound from '../assets/images/notFound.svg';
-import { setFilterMovies } from '../redux/actions';
 const NotFoundSearch = () => {
-  const [searchParams] = useSearchParams();
-  const dispatch = useDispatch();
-
-  const searchedWord = searchParams.get('search');
+  // const dispatch = useDispatch();
+  const { searchWord } = useSelector((state) => state);
 
   return (
     <StyledNotFoundSearch>
@@ -19,11 +15,11 @@ const NotFoundSearch = () => {
         title='Imagen de busqueda no encontrada'
       />
       <Title>
-        No se encontrarón resultados para la busqueda de "{searchedWord}"
+        No se encontrarón resultados para la busqueda de "{searchWord}"
       </Title>
-      <ButtonBack onClick={() => dispatch(setFilterMovies('all'))}>
+      {/* <ButtonBack onClick={() => dispatch(setFilterMovies('all'))}>
         Regresar
-      </ButtonBack>
+      </ButtonBack> */}
     </StyledNotFoundSearch>
   );
 };

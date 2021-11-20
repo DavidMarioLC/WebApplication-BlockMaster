@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { BsSearch } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useSearchParams } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import logo from '../assets/images/logo.png';
 import { searchByName, setFilterMovies } from '../redux/actions';
@@ -10,14 +10,18 @@ import { Wrapper } from './Wrapper';
 const Header = () => {
   const [searchValue, setSearchValue] = useState('');
   const dispatch = useDispatch();
-  const [, setSearchParams] = useSearchParams();
   const isActiveLink = useSelector((state) => state.filter);
+  const navigate = useNavigate();
 
   const handlerSearch = (e) => {
     if (!searchValue) return;
     e.preventDefault();
-    setSearchParams({ search: searchValue });
+
+    navigate('/search');
+
+    // setSearchParams({ value: searchValue });
     dispatch(searchByName(searchValue));
+
     dispatch(setFilterMovies('search'));
     resetForm();
   };
@@ -66,7 +70,7 @@ const Header = () => {
                   style={{
                     color: isActiveLink === 'most-valued' ? 'yellow' : 'white',
                   }}
-                  to='/?filterby=mas-valoradas'
+                  to='/mas-valoradas'
                 >
                   Más valoradas
                 </NavLink>
@@ -77,7 +81,7 @@ const Header = () => {
                   style={{
                     color: isActiveLink === 'least-valued' ? 'yellow' : 'white',
                   }}
-                  to='/?filterby=menos-valoradas'
+                  to='/menos-valoradas'
                 >
                   Menos valoradas
                 </NavLink>
