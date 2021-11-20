@@ -8,3 +8,4 @@ export const SHOW_MODAL = 'SHOW_MODAL';
 export const CLOSE_MODAL = 'CLOSE_MODAL';
 export const INIT_GENDERS = 'INIT_GENDERS';
 export const LOAD_MORE_MOVIES = 'LOAD_MORE_MOVIES';
+export const LOADING_SCROLL = 'LOADING_SCROLL';

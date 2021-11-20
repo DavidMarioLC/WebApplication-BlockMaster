@@ -7,6 +7,7 @@ const initialState = {
   genders: [],
   filter: 'all',
   loading: true,
+  loadingScroll: false,
   modal: false,
   movie: {},
 };
@@ -24,8 +25,9 @@ export const movieReducer = (state = initialState, action) => {
     case actions.SEARCH:
       return {
         ...state,
-        searchMoviesList: action.payload.value.results,
+        loadingScroll: false,
         loading: false,
+        searchMoviesList: action.payload.value.results,
       };
 
     case actions.SET_FILTER:
@@ -40,7 +42,11 @@ export const movieReducer = (state = initialState, action) => {
         ...state,
         loading: true,
       };
-
+    case actions.LOADING_SCROLL:
+      return {
+        ...state,
+        loadingScroll: !state.loadingScroll,
+      };
     case actions.SHOW_MODAL:
       return {
         ...state,

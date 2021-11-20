@@ -2,16 +2,22 @@ import movieService from '../services/movie';
 import * as actions from './actionTypes';
 
 export const initStateMovies = () => async (dispatch, getSatate) => {
-  const { page } = getSatate();
+  const { page, filter } = getSatate();
 
-  const movies = await movieService.getAll(page);
+  if (filter === 'search') return;
 
-  dispatch({
-    type: actions.INIT_MOVIES,
-    payload: {
-      value: movies,
-    },
-  });
+  dispatch(loadingScroll());
+
+  setTimeout(async () => {
+    const movies = await movieService.getAll(page);
+    dispatch(loadingScroll());
+    dispatch({
+      type: actions.INIT_MOVIES,
+      payload: {
+        value: movies,
+      },
+    });
+  }, 1000);
 };
 
 export const initGenderMovies = () => async (dispatch) => {
@@ -26,6 +32,7 @@ export const initGenderMovies = () => async (dispatch) => {
 
 export const searchByName = (value) => async (dispatch) => {
   dispatch(loading());
+
   const movies = await movieService.getByName(value);
 
   dispatch({
@@ -45,6 +52,10 @@ export const setFilterMovies = (value) => ({
 
 export const loading = () => ({
   type: actions.LOADING,
+});
+
+export const loadingScroll = () => ({
+  type: actions.LOADING_SCROLL,
 });
 
 export const showModal = (movie) => ({
